@@ -23,7 +23,7 @@ fn get_argc_argv() -> (i32, *const *const i8) {
     (argc, argv.as_ptr())
 }
 
-fn main() {
+fn start_wxWidgets() {
     let (argc, argv) = get_argc_argv();
 
     // Pass the command line arguments to start_wx_system
@@ -31,4 +31,8 @@ fn main() {
         set_func_pointer(print_hello);
         start_wx_system(argc, argv);
     }
+}
+
+fn main() {
+    start_wxWidgets();
 }
