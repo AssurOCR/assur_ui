@@ -16,7 +16,15 @@ extern "C" {
 
         wxEntryStart(argc, argv);
         wxTheApp->CallOnInit();
-        wxTheApp->OnRun();
+        //wxTheApp->MainLoop();
+
+        // cleaning up...
+        //wxTheApp->OnExit();
+        //wxEntryCleanup();
+    }
+
+    void update_events_loop() {
+        wxTheApp->SafeYield(wxTheApp->GetTopWindow(), false);
     }
 }
 
