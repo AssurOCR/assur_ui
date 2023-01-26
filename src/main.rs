@@ -79,8 +79,8 @@ fn main() {
         .insert_resource(ScheduleRunnerSettings::run_loop(Duration::from_millis(100)))
         .add_plugin(ScheduleRunnerPlugin::default())
         .add_startup_system(start_wx_widgets)
-        //.add_system(greet_hello_world)
         .add_system(wx_loop)
+        .add_system(greet_hello_world)
         .run();
 
     //start_wx_widgets();

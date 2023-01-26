@@ -24,7 +24,7 @@ extern "C" {
     }
 
     void update_events_loop() {
-        wxTheApp->SafeYield(wxTheApp->GetTopWindow(), false);
+        wxTheApp->Yield(true);
     }
 }
 
