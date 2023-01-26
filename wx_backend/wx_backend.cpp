@@ -2,8 +2,23 @@
 
 void (*func_pointer)();
 
+
+extern "C" {
+    void set_func_pointer(void (*func)()) {
+        func_pointer = func;
+    }
+
+    void start_wx_system(int argc, char **argv) {
+        wxEntryStart(argc, argv);
+        wxTheApp->CallOnInit();
+        wxTheApp->OnRun();
+    }
+}
+
+
+
 void print_hello_world() {
-    std::cout << "Hello, World! {from func_pointer} xD" << std::endl;
+    std::cout << "Hello, World! {from func_pointer 2x} xD" << std::endl;
 }
 
 class CoreFrame : public wxFrame {
@@ -38,24 +53,6 @@ public:
     }
 };
 
-
-
-
-int main(int argc, char **argv){
-
-    std::cout << "Hello, World! xD" << std::endl;
-
-
-    func_pointer = &print_hello_world;
-
-    wxEntryStart(argc, argv);
-    wxTheApp->CallOnInit();
-    wxTheApp->OnRun();
-
-
-
-	return 0;
-}
 
 wxIMPLEMENT_APP_NO_MAIN(MyApp);
 
