@@ -47,7 +47,7 @@ public:
 
         coreFrame->Show();
 
-        std::cout << "I am currently on init@" << std::endl;
+        std::cout << "I am currently on init@|@" << std::endl;
         return true;
     }
 };
