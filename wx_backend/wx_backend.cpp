@@ -1,23 +1,31 @@
 #include <wx/wx.h>
 
-class MyFrame : public wxFrame {
+void (*func_pointer)();
+
+void print_hello_world() {
+    std::cout << "Hello, World! {from func_pointer} xD" << std::endl;
+}
+
+class CoreFrame : public wxFrame {
 public:
-    MyFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title) {
-        // Set up the menu bar
+    CoreFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title) {
+        /*
+            // Set up the menu bar
 
-        // Create the button and text box
-        wxButton* button = new wxButton(this, wxID_OK, "OK");
-        wxTextCtrl* textBox = new wxTextCtrl(this, wxID_ANY);
+            // Create the button and text box
+            wxButton* button = new wxButton(this, wxID_OK, "OK");
+            wxTextCtrl* textBox = new wxTextCtrl(this, wxID_ANY);
 
-        // Set up the sizer
-        wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-        sizer->Add(textBox, 1, wxEXPAND);
-        sizer->Add(button, 0, wxALIGN_RIGHT | wxALL, 10);
-        SetSizer(sizer);
+            // Set up the sizer
+            wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+            sizer->Add(textBox, 1, wxEXPAND);
+            sizer->Add(button, 0, wxALIGN_RIGHT | wxALL, 10);
+            SetSizer(sizer);
 
-        // Set up the event handlers
-        Bind(wxEVT_MENU, &MyFrame::OnExit, this, wxID_EXIT);
-        Bind(wxEVT_BUTTON, &MyFrame::OnOK, this, wxID_OK);
+            // Set up the event handlers
+            Bind(wxEVT_MENU, &CoreFrame::OnExit, this, wxID_EXIT);
+            Bind(wxEVT_BUTTON, &CoreFrame::OnOK, this, wxID_OK);
+        */
     }
 
 private:
@@ -32,23 +40,27 @@ private:
 
 class MyApp : public wxApp {
 public:
+    CoreFrame *coreFrame;
+
     virtual bool OnInit() {
-        MyFrame* frame = new MyFrame("My App");
-        //frame->SetMenuBar(new wxMenuBar());
+        coreFrame = new CoreFrame("assur_ui App");
 
+        /*
+            wxMenuBar* menuBar = new wxMenuBar();
+            wxMenu* fileMenu = new wxMenu();
+            fileMenu->Append(wxID_EXIT);
+            menuBar->Append(fileMenu, "&File");
+            wxMenu* editMenu = new wxMenu();
+            editMenu->Append(wxID_CUT);
+            editMenu->Append(wxID_COPY);
+            editMenu->Append(wxID_PASTE);
+            menuBar->Append(editMenu, "&Edit");
+            frame->SetMenuBar(menuBar);
+        */
 
-        wxMenuBar* menuBar = new wxMenuBar();
-        wxMenu* fileMenu = new wxMenu();
-        fileMenu->Append(wxID_EXIT);
-        menuBar->Append(fileMenu, "&File");
-        wxMenu* editMenu = new wxMenu();
-        editMenu->Append(wxID_CUT);
-        editMenu->Append(wxID_COPY);
-        editMenu->Append(wxID_PASTE);
-        menuBar->Append(editMenu, "&Edit");
-        frame->SetMenuBar(menuBar);
+        func_pointer();
 
-        frame->Show();
+        coreFrame->Show();
 
         std::cout << "I am currently on init@" << std::endl;
         return true;
@@ -61,6 +73,9 @@ public:
 int main(int argc, char **argv){
 
     std::cout << "Hello, World! xD" << std::endl;
+
+
+    func_pointer = &print_hello_world;
 
     wxEntryStart(argc, argv);
     wxTheApp->CallOnInit();
