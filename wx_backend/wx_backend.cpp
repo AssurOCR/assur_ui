@@ -12,7 +12,7 @@ extern "C" {
     }
 
     void start_wx_system(int argc, char **argv) {
-        func_pointer = &print_hello_world;
+        //func_pointer = &print_hello_world;
 
         wxEntryStart(argc, argv);
         wxTheApp->CallOnInit();
