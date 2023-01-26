@@ -7,7 +7,7 @@ assur_ui is designed to be lightweight and easy to use, with a simple ECS-based 
 
 # Goals
 -   Easiest possible GUI library
--   Native GUI on Windows, Macos, FreeBSD and Linux (Both GTK and Qt {under-development}
+-   Native GUI on Windows, Macos, FreeBSD and Linux (Both GTK and Qt {under-development})
 -   ECS-styled work flow
 -   Both native and bevy powered API for painting, while not compromising with native look and feel.
 -   Support XML based descriptor for Component creation
