@@ -13,9 +13,6 @@ use bevy::{
 use std::ffi::CString;
 use std::os::raw::c_char;
 
-
-static mut can_start_wx: bool = true;
-
 #[link(name = "wx_backend")]
 extern "C" {
     fn start_wx_system(argc: i32, argv: *const *const u8);
@@ -41,20 +38,14 @@ fn get_argc_argv() -> (i32, *const *const u8) {
 
 fn start_wx_widgets() {
     unsafe {
-        if (can_start_wx) {
-            println!("{}: Starting wx_system!", get_current_time());
+        println!("{}: Starting wx_system!", get_current_time());
 
-            can_start_wx = false;
+        let (argc, argv) = get_argc_argv();
 
-            let (argc, argv) = get_argc_argv();
+        // Pass the command line arguments to start_wx_system
 
-            // Pass the command line arguments to start_wx_system
-
-            set_func_pointer(print_hello);
-            start_wx_system(argc, argv);
-        } else {
-            println!("{}: Cancelled starting wx_system!", get_current_time());
-        }
+        set_func_pointer(print_hello);
+        start_wx_system(argc, argv);
     }
 }
 
@@ -82,6 +73,4 @@ fn main() {
         .add_system(wx_loop)
         .add_system(greet_hello_world)
         .run();
-
-    //start_wx_widgets();
 }
