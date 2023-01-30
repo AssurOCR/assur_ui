@@ -14,6 +14,8 @@ extern "C" {
     void start_wx_system(int argc, char **argv) {
         //func_pointer = &print_hello_world;
 
+        std::cout << "Starting wxEntryStart. Where argc: " << argc << ", argv: " << argv << std::endl;
+
         wxEntryStart(argc, argv);
         wxTheApp->CallOnInit();
         //wxTheApp->MainLoop();

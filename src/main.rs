@@ -33,10 +33,9 @@ fn main() {
     println!("Starting at: {}", get_current_time());
 
     App::new()
-        .insert_resource(ScheduleRunnerSettings::run_loop(Duration::from_millis(100)))
+        .insert_resource(ScheduleRunnerSettings::run_loop(Duration::from_millis(1000/60)))
         .add_plugin(ScheduleRunnerPlugin::default())
         .add_startup_system(start_wx_widgets)
-        .add_startup_system(spawn_main_win)
         .add_system(wx_loop)
         .add_system(greet_hello_world)
         .run();
