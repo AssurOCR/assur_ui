@@ -1,3 +1,4 @@
+use bevy::prelude::{Query, With};
 use chrono;
 
 use bevy::app::App;
@@ -29,14 +30,21 @@ fn spawn_main_win(mut commands: Commands) {
     commands.spawn(Button::new("Hello, World!".to_string(), 0, 0, 100, 100));
 }
 
+fn paint(mut query: Query<(&Rect, &Mouse)>) {
+    for name in &query {
+        println!("{:?}", name);
+    }
+}
+
 fn main() {
     println!("Starting at: {}", get_current_time());
 
     App::new()
-        .insert_resource(ScheduleRunnerSettings::run_loop(Duration::from_millis(1000/60)))
+        .insert_resource(ScheduleRunnerSettings::run_loop(Duration::from_millis(1000/144)))
         .add_plugin(ScheduleRunnerPlugin::default())
+        .add_startup_system(spawn_main_win)
         .add_startup_system(start_wx_widgets)
         .add_system(wx_loop)
-        .add_system(greet_hello_world)
+        .add_system(paint)
         .run();
 }

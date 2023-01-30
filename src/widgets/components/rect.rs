@@ -2,7 +2,7 @@ use bevy::{
     prelude::*,
 };
 
-#[derive(Component)]
+#[derive(Component, Debug)]
 pub struct Rect {
     pub label: String,
     pub x: i32,
