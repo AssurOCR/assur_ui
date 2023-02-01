@@ -29,7 +29,7 @@ extern "C" {
         wxTheApp->CallOnInit();
         //wxTheApp->MainLoop();
 
-        // cleaning up...
+        // cleaning up...s
         //wxTheApp->OnExit();
         //wxEntryCleanup();
     }
