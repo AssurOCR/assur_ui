@@ -16,7 +16,16 @@ extern "C" {
 
         std::cout << "Starting wxEntryStart. Where argc: " << argc << ", argv: " << argv << std::endl;
 
-        wxEntryStart(argc, argv);
+        int n_argc = 3;
+        char *n_argv[] = {
+            "program_name",
+            "argument_1",
+            "argument_2"
+        };
+
+        
+        wxEntryStart(n_argc, n_argv);
+
         wxTheApp->CallOnInit();
         //wxTheApp->MainLoop();
 
