@@ -12,8 +12,6 @@ extern "C" {
     }
 
     void start_wx_system(int argc, char **argv) {
-        //func_pointer = &print_hello_world;
-
         std::cout << "Starting wxEntryStart. Where argc: " << argc << ", argv: " << argv << std::endl;
 
         int n_argc = 3;
@@ -27,11 +25,6 @@ extern "C" {
         wxEntryStart(n_argc, n_argv);
 
         wxTheApp->CallOnInit();
-        //wxTheApp->MainLoop();
-
-        // cleaning up...s
-        //wxTheApp->OnExit();
-        //wxEntryCleanup();
     }
 
     void update_events_loop() {
@@ -73,36 +66,3 @@ public:
 
 
 wxIMPLEMENT_APP_NO_MAIN(MyApp);
-
-
-
-
-/*
-    Commented out code guides:
-
-    //First:
-        wxMenuBar* menuBar = new wxMenuBar();
-        wxMenu* fileMenu = new wxMenu();
-        fileMenu->Append(wxID_EXIT);
-        menuBar->Append(fileMenu, "&File");
-        wxMenu* editMenu = new wxMenu();
-        editMenu->Append(wxID_CUT);
-        editMenu->Append(wxID_COPY);
-        editMenu->Append(wxID_PASTE);
-        menuBar->Append(editMenu, "&Edit");
-        frame->SetMenuBar(menuBar);
-
-    //Second:
-        wxButton* button = new wxButton(this, wxID_OK, "OK");
-        wxTextCtrl* textBox = new wxTextCtrl(this, wxID_ANY);
-
-        // Set up the sizer
-        wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-        sizer->Add(textBox, 1, wxEXPAND);
-        sizer->Add(button, 0, wxALIGN_RIGHT | wxALL, 10);
-        SetSizer(sizer);
-
-        // Set up the event handlers
-        Bind(wxEVT_MENU, &CoreFrame::OnExit, this, wxID_EXIT);
-        Bind(wxEVT_BUTTON, &CoreFrame::OnOK, this, wxID_OK);
-*/
