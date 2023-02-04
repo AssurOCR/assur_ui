@@ -22,7 +22,11 @@ extern "C" {
         };
 
         
-        wxEntryStart(n_argc, n_argv);
+        if (argc > 1) {
+            wxEntryStart(argc, argv);
+        } else {
+            wxEntryStart(n_argc, n_argv);
+        }
 
         wxTheApp->CallOnInit();
     }
